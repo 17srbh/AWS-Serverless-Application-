@@ -64,4 +64,8 @@ app.delete('/todos/:id', async (req, res) => {
 });
 
 // Export for Lambda
-module.exports.handler = serverless(app);
+exports.handler = async (event, context) => {
+  console.log("Event:", JSON.stringify(event));
+
+  return await serverless(app)(event, context);
+};
